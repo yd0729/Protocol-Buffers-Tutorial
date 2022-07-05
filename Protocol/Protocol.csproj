@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Protocol</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Program.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Google.Protobuf" Version="3.21.2" />
+    </ItemGroup>
+
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+      <Exec Command="protoc -I=. --csharp_out=. addressbook.proto" />
+    </Target>
+</Project>
